@@ -3,6 +3,11 @@ import type { Metadata } from 'next';
 import Grid from '@mui/material/Unstable_Grid2';
 import dayjs from 'dayjs';
 
+import dataChart from "../../Data/dataChart.json"
+import cityTemperature, { type CityTemperature } from '@visx/mock-data/lib/mocks/cityTemperature';
+
+import  Example from '../../components/chart/Example'
+
 import { config } from '@/config';
 import { Budget } from '@/components/dashboard/overview/budget';
 import { LatestOrders } from '@/components/dashboard/overview/latest-orders';
@@ -13,12 +18,33 @@ import { TotalCustomers } from '@/components/dashboard/overview/total-customers'
 import { TotalProfit } from '@/components/dashboard/overview/total-profit';
 import { Traffic } from '@/components/dashboard/overview/traffic';
 
+
+
 export const metadata = { title: `Overview | Dashboard | ${config.site.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
+  
+
+
+const getDate = (d: CityTemperature) => d.date;
+
+const dateArray =  dataChart.map(item => item?.Date);
+// console.log(dateArray )// 
+
   return (
     <Grid container spacing={3}>
-      <Grid lg={3} sm={6} xs={12}>
+
+
+    <Example  width={1000} height={800}/>
+ 
+      {/* {render()} */}
+
+
+
+
+
+
+      {/* <Grid lg={3} sm={6} xs={12}>
         <Budget diff={12} trend="up" sx={{ height: '100%' }} value="$24k" />
       </Grid>
       <Grid lg={3} sm={6} xs={12}>
@@ -127,7 +153,7 @@ export default function Page(): React.JSX.Element {
           ]}
           sx={{ height: '100%' }}
         />
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }
